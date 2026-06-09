@@ -54,7 +54,7 @@ services:
       - dokploy-network
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.supabase-studio.rule=Host(`studio.supabase.garisaksara.com.my`)"
+      - "traefik.http.routers.supabase-studio.rule=Host(`supabase-studio.garisaksara.com.my`)"
       - "traefik.http.routers.supabase-studio.entrypoints=websecure"
       - "traefik.http.routers.supabase-studio.tls.certResolver=letsencrypt"
       - "traefik.http.services.supabase-studio.loadbalancer.server.port=3000"
@@ -73,7 +73,7 @@ services:
       dokploy-network:
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.supabase-kong.rule=Host(`supabase.garisaksara.com.my`)"
+      - "traefik.http.routers.supabase-kong.rule=Host(`supabase-api.garisaksara.com.my`)"
       - "traefik.http.routers.supabase-kong.entrypoints=websecure"
       - "traefik.http.routers.supabase-kong.tls.certResolver=letsencrypt"
     healthcheck:
