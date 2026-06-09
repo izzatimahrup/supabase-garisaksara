@@ -54,7 +54,7 @@ services:
       - dokploy-network
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.supabase-studio.rule=Host(`studio.supabaseasset.garisaksara.com.my`)"
+      - "traefik.http.routers.supabase-studio.rule=Host(`studio.supabase.garisaksara.com.my`)"
       - "traefik.http.routers.supabase-studio.entrypoints=websecure"
       - "traefik.http.routers.supabase-studio.tls.certResolver=letsencrypt"
       - "traefik.http.services.supabase-studio.loadbalancer.server.port=3000"
@@ -73,7 +73,7 @@ services:
       dokploy-network:
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.supabase-kong.rule=Host(`supabaseasset.garisaksara.com.my`)"
+      - "traefik.http.routers.supabase-kong.rule=Host(`supabase.garisaksara.com.my`)"
       - "traefik.http.routers.supabase-kong.entrypoints=websecure"
       - "traefik.http.routers.supabase-kong.tls.certResolver=letsencrypt"
     healthcheck:
@@ -85,8 +85,8 @@ services:
       studio:
         condition: service_healthy
     ports:
-      - ${KONG_HTTP_PORT}:8000/tcp
-      - ${KONG_HTTPS_PORT}:8443/tcp
+      - "8002:8000/tcp"
+      - "8445:8443/tcp"
     volumes:
       - ./volumes/api/kong.yml:/home/kong/temp.yml:ro,z
       - ./volumes/api/kong-entrypoint.sh:/home/kong/kong-entrypoint.sh:ro,z
@@ -350,8 +350,8 @@ services:
     image: supabase/supavisor:2.9.5
     restart: unless-stopped
     ports:
-      - ${POSTGRES_PORT}:5432
-      - ${POOLER_PROXY_PORT_TRANSACTION}:6543
+      - "5436:5432"
+      - "6547:6543"
     volumes:
       - ./volumes/pooler/pooler.exs:/etc/pooler/pooler.exs:ro,z
     healthcheck:
