@@ -1,6 +1,8 @@
 _format_version: '2.1'
 _transform: true
 
+
+
 ###
 ### Consumers / Users
 ###
@@ -294,6 +296,15 @@ services:
     plugins:
       - name: cors
 
+  ## Health check endpoint (no authentication)
+  - name: health
+    url: http://localhost:8000/status
+    routes:
+      - name: health
+        paths:
+          - /health
+    plugins: []
+    
   ## OAuth 2.0 Authorization Server Metadata (RFC 8414)
   - name: well-known-oauth
     _comment: 'Auth: /.well-known/oauth-authorization-server -> http://auth:9999/.well-known/oauth-authorization-server'
